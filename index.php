@@ -7,6 +7,21 @@
  * Author: Hüseyin KIRKAN [PufyTek]
  * Author URI: https://www.huseyinkirkan.site/
  */
+ function resimYukleniyor(){
+	echo "
+	<script>
+function init() {
+var imgDefer = document.getElementsByTagName('img');
+for (var i=0; i<imgDefer.length; i++) {
+if(imgDefer[i].getAttribute('data-url')) {
+imgDefer[i].setAttribute('src',imgDefer[i].getAttribute('data-url'));
+} } }
+window.onload = init;
+</script>
+	";
+	
+}
+add_action('wp_footer','resimYukleniyor');
 add_filter('the_content','new_content');
 function new_content($content) {
     $content = str_replace('<img','<img loading="lazy"', $content);
